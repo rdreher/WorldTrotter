@@ -12,6 +12,19 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var celsiusLabel: UILabel!
     @IBOutlet var textField: UITextField!
+    
+    @IBAction func fahrenheitFieldEditingChanged(_ textField: UITextField) {
+        if let text = textField.text, let value = Double(text) {
+            fahrenheitValue = Measurement(value: value, unit: . fahrenheit)
+        } else {
+            fahrenheitValue = nil
+        }
+    }
+    
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        textField.resignFirstResponder()
+    }
+    
     var fahrenheitValue: Measurement<UnitTemperature>? {
         didSet {
             updateCelsiusLabel()
@@ -55,19 +68,6 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         // Use our string extensions to check if the string is a valid double and
         // only has the specified amount of decimal places.
         return replacementText.isValidDouble(maxDecimalPlaces: 2)
-    }
-    
-    
-    @IBAction func fahrenheitFieldEditingChanged(_ textField: UITextField) {
-        if let text = textField.text, let value = Double(text) {
-            fahrenheitValue = Measurement(value: value, unit: . fahrenheit)
-        } else {
-            fahrenheitValue = nil
-        }
-    }
-    
-    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        textField.resignFirstResponder()
     }
     
     override func viewDidLoad() {
