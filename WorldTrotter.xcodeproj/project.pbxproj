@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		D02ED951206ECA2D00803A3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02ED950206ECA2D00803A3A /* AppDelegate.swift */; };
-		D02ED953206ECA2D00803A3A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02ED952206ECA2D00803A3A /* ViewController.swift */; };
 		D02ED956206ECA2D00803A3A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D02ED954206ECA2D00803A3A /* Main.storyboard */; };
 		D02ED958206ECA2F00803A3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D02ED957206ECA2F00803A3A /* Assets.xcassets */; };
 		D02ED95B206ECA2F00803A3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D02ED959206ECA2F00803A3A /* LaunchScreen.storyboard */; };
 		D02ED966206ECA2F00803A3A /* WorldTrotterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02ED965206ECA2F00803A3A /* WorldTrotterTests.swift */; };
 		D02ED971206ECA2F00803A3A /* WorldTrotterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02ED970206ECA2F00803A3A /* WorldTrotterUITests.swift */; };
+		D0537AEB20732D1700B9F2A2 /* ConversionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0537AEA20732D1700B9F2A2 /* ConversionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +36,6 @@
 /* Begin PBXFileReference section */
 		D02ED94D206ECA2D00803A3A /* WorldTrotter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorldTrotter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D02ED950206ECA2D00803A3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D02ED952206ECA2D00803A3A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D02ED955206ECA2D00803A3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D02ED957206ECA2F00803A3A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D02ED95A206ECA2F00803A3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +46,7 @@
 		D02ED96C206ECA2F00803A3A /* WorldTrotterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorldTrotterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D02ED970206ECA2F00803A3A /* WorldTrotterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTrotterUITests.swift; sourceTree = "<group>"; };
 		D02ED972206ECA2F00803A3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0537AEA20732D1700B9F2A2 /* ConversionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +97,8 @@
 		D02ED94F206ECA2D00803A3A /* WorldTrotter */ = {
 			isa = PBXGroup;
 			children = (
+				D0537AEA20732D1700B9F2A2 /* ConversionViewController.swift */,
 				D02ED950206ECA2D00803A3A /* AppDelegate.swift */,
-				D02ED952206ECA2D00803A3A /* ViewController.swift */,
 				D02ED954206ECA2D00803A3A /* Main.storyboard */,
 				D02ED957206ECA2F00803A3A /* Assets.xcassets */,
 				D02ED959206ECA2F00803A3A /* LaunchScreen.storyboard */,
@@ -256,7 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D02ED953206ECA2D00803A3A /* ViewController.swift in Sources */,
+				D0537AEB20732D1700B9F2A2 /* ConversionViewController.swift in Sources */,
 				D02ED951206ECA2D00803A3A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,6 +433,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BLX8B4TG2L;
 				INFOPLIST_FILE = WorldTrotter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -451,6 +452,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BLX8B4TG2L;
 				INFOPLIST_FILE = WorldTrotter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -554,7 +556,7 @@
 				D02ED974206ECA2F00803A3A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		D02ED975206ECA2F00803A3A /* Build configuration list for PBXNativeTarget "WorldTrotter" */ = {
 			isa = XCConfigurationList;
@@ -563,7 +565,7 @@
 				D02ED977206ECA2F00803A3A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		D02ED978206ECA2F00803A3A /* Build configuration list for PBXNativeTarget "WorldTrotterTests" */ = {
 			isa = XCConfigurationList;
@@ -572,7 +574,7 @@
 				D02ED97A206ECA2F00803A3A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		D02ED97B206ECA2F00803A3A /* Build configuration list for PBXNativeTarget "WorldTrotterUITests" */ = {
 			isa = XCConfigurationList;
@@ -581,7 +583,7 @@
 				D02ED97D206ECA2F00803A3A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
