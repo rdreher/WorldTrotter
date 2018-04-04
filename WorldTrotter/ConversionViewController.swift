@@ -47,9 +47,15 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     
     func updateCelsiusLabel() {
         if let celsiusValue = celsiusValue {
+            if celsiusValue.value < 0 {
+                celsiusLabel.textColor = UIColor.blue
+            } else {
+                celsiusLabel.textColor = UIColor.orange
+            }
             celsiusLabel.text =
                 numberFormatter.string(from: NSNumber(value: celsiusValue.value))
         } else {
+            celsiusLabel.textColor = UIColor.orange
             celsiusLabel.text = "???"
         }
     }
@@ -72,8 +78,9 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateCelsiusLabel()
         textField.delegate = self
+        print("ConversionViewController loaded its view")
+        updateCelsiusLabel()
     }
 }
 
