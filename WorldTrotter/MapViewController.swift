@@ -12,6 +12,22 @@ import UIKit
 import MapKit
 import CoreLocation
 
+// MARK: - Weather API Model
+
+private struct WeatherResponse: Decodable {
+    let current: CurrentWeather
+
+    struct CurrentWeather: Decodable {
+        let temperature2m: Double
+
+        enum CodingKeys: String, CodingKey {
+            case temperature2m = "temperature_2m"
+        }
+    }
+}
+
+// MARK: - MapViewController
+
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     var locationManager = CLLocationManager()
@@ -20,6 +36,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     override func loadView() {
         mapView = MKMapView()
         view = mapView
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleMapTap(_:)))
+        mapView.addGestureRecognizer(tapGesture)
 
         let segmentedControl = UISegmentedControl(items: ["Standard", "Hybrid", "Satellite"])
         segmentedControl.backgroundColor = UIColor.white.withAlphaComponent(0.5)
@@ -69,5 +88,80 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         )
         region.center = mapView.userLocation.coordinate
         mapView.setRegion(region, animated: true)
+    }
+
+    // MARK: - Temperature Lookup
+
+    @objc private func handleMapTap(_ gesture: UITapGestureRecognizer) {
+        let point = gesture.location(in: mapView)
+
+        // Ignore taps on existing annotation views
+        for annotation in mapView.annotations {
+            if let annotationView = mapView.view(for: annotation),
+               annotationView.frame.contains(point) {
+                return
+            }
+        }
+
+        let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
+        lookUpTemperature(at: coordinate)
+    }
+
+    private func lookUpTemperature(at coordinate: CLLocationCoordinate2D) {
+        Task {
+            async let temperatureTask = fetchTemperature(at: coordinate)
+            async let cityTask = reverseGeocode(coordinate)
+
+            do {
+                let temperature = try await temperatureTask
+                let city = await cityTask
+
+                await MainActor.run {
+                    let existing = mapView.annotations.filter { !($0 is MKUserLocation) }
+                    mapView.removeAnnotations(existing)
+
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = coordinate
+                    annotation.title = city
+                    annotation.subtitle = String(format: "%.1f°C", temperature)
+                    mapView.addAnnotation(annotation)
+                    mapView.selectAnnotation(annotation, animated: true)
+                }
+            } catch {
+                // Network or decoding error — silently ignore
+            }
+        }
+    }
+
+    private func fetchTemperature(at coordinate: CLLocationCoordinate2D) async throws -> Double {
+        let urlString = "https://api.open-meteo.com/v1/forecast"
+            + "?latitude=\(coordinate.latitude)"
+            + "&longitude=\(coordinate.longitude)"
+            + "&current=temperature_2m"
+        guard let url = URL(string: urlString) else { throw URLError(.badURL) }
+        let (data, _) = try await URLSession.shared.data(from: url)
+        let response = try JSONDecoder().decode(WeatherResponse.self, from: data)
+        return response.current.temperature2m
+    }
+
+    private func reverseGeocode(_ coordinate: CLLocationCoordinate2D) async -> String {
+        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        let placemarks = try? await CLGeocoder().reverseGeocodeLocation(location)
+        return placemarks?.first?.locality
+            ?? placemarks?.first?.name
+            ?? "Unknown Location"
+    }
+
+    // MARK: - MKMapViewDelegate
+
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard !(annotation is MKUserLocation) else { return nil }
+
+        let identifier = "TemperaturePin"
+        let view = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
+            ?? MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+        view.annotation = annotation
+        view.canShowCallout = true
+        return view
     }
 }
