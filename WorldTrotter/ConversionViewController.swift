@@ -24,8 +24,11 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var textField: UITextField!
 
     private let suffixLabel = UILabel()
+    static var sharedDirection: ConversionDirection = .fahrenheitToCelsius
+
     private var direction: ConversionDirection = .fahrenheitToCelsius {
         didSet {
+            ConversionViewController.sharedDirection = direction
             textField.text = nil
             inputValue = nil
             suffixLabel.text = direction.inputSymbol
@@ -65,10 +68,10 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     func updateOutputLabel() {
         if let outputValue {
             outputLabel.textColor = outputValue.value < 0 ? .blue : .orange
-            outputLabel.text = (numberFormatter.string(from: NSNumber(value: outputValue.value)) ?? "???") + direction.outputSymbol
+            outputLabel.text = (numberFormatter.string(from: NSNumber(value: outputValue.value)) ?? "...") + direction.outputSymbol
         } else {
             outputLabel.textColor = .orange
-            outputLabel.text = "???"
+            outputLabel.text = "..."
         }
     }
 

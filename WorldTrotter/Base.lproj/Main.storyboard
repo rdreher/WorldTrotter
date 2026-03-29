@@ -16,21 +16,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="is really" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SyI-IA-1TF">
-                                <rect key="frame" x="190.66666666666666" y="195" width="113.99999999999997" height="43"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="is" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SyI-IA-1TF">
+                                <rect key="frame" x="175" y="200" width="25" height="43"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="???" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="zbh-Ow-zRr">
-                                <rect key="frame" x="196" y="246" width="103.66666666666669" height="84"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="zbh-Ow-zRr">
+                                <rect key="frame" x="164.66666666666666" y="251" width="45.666666666666657" height="84"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="70"/>
                                 <color key="textColor" red="0.88235294117647056" green="0.34509803921568627" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Temperature" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F0K-7P-YDr">
-                                <rect key="frame" x="63" y="108" width="369.33333333333331" height="84"/>
+                                <rect key="frame" x="63" y="108" width="249" height="84"/>
                                 <color key="textColor" red="0.89019607840000003" green="0.43137254899999999" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="70"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -44,13 +43,13 @@
                         <color key="backgroundColor" red="0.96078431372549022" green="0.95686274509803915" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="SyI-IA-1TF" firstAttribute="top" secondItem="F0K-7P-YDr" secondAttribute="bottom" constant="8" symbolic="YES" id="new-is-really-top"/>
                             <constraint firstItem="zbh-Ow-zRr" firstAttribute="top" secondItem="SyI-IA-1TF" secondAttribute="bottom" constant="8" symbolic="YES" id="AdV-RT-o8v"/>
                             <constraint firstItem="F0K-7P-YDr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="BHw-wJ-Ito"/>
                             <constraint firstItem="F0K-7P-YDr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="63" id="RTL-rw-xEN"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="F0K-7P-YDr" secondAttribute="trailing" constant="63" id="new-textfield-trailing"/>
                             <constraint firstItem="SyI-IA-1TF" firstAttribute="centerX" secondItem="zbh-Ow-zRr" secondAttribute="centerX" id="Sde-Zl-1cp"/>
                             <constraint firstItem="F0K-7P-YDr" firstAttribute="centerX" secondItem="zbh-Ow-zRr" secondAttribute="centerX" id="W31-dp-c9s"/>
+                            <constraint firstItem="SyI-IA-1TF" firstAttribute="top" secondItem="F0K-7P-YDr" secondAttribute="bottom" constant="8" symbolic="YES" id="new-is-really-top"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="F0K-7P-YDr" secondAttribute="trailing" constant="63" id="new-textfield-trailing"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="MqO-fa-Rkb" appends="YES" id="e9t-tO-hdZ"/>
